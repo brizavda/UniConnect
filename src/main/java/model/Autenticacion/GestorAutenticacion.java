@@ -13,7 +13,6 @@ public class GestorAutenticacion { // Definición de la clase GestorAutenticacio
 
     public void getOption(int opcion) { // Método para obtener la opción seleccionada
         ControladorAutenticacion controladorAutenticacion = new ControladorAutenticacion(); // Crear una instancia de ControladorAutenticacion
-        ControladorPrincipal controladorPrincipal = new ControladorPrincipal(); // Crear una instancia de ControladorPrincipal
 
         // Switch para manejar las opciones
         switch (opcion) {
@@ -22,7 +21,20 @@ public class GestorAutenticacion { // Definición de la clase GestorAutenticacio
             case 3 -> exit(0); // Salir del programa
             default -> { // Si la opción no es válida
                 System.out.println("Opción inválida. Intente nuevamente"); // Mensaje de error
-                controladorPrincipal.getInit(); // Obtener el mensaje de inicialización
+                controladorAutenticacion.getInit(); // Obtener el mensaje de inicialización
+            }
+        }
+    }
+
+    public void getViews(int opcion) {
+        ControladorAutenticacion controladorAutenticacion = new ControladorAutenticacion(); // Crear una instancia de ControladorAutenticacion
+
+        switch (opcion){
+            case 1 -> System.out.println("Publicaciones");
+            case 9 -> controladorAutenticacion.getInit();
+            default -> {
+                System.out.println("Opción inválida. Intente nuevamente"); // Mensaje de error
+                controladorAutenticacion.getMenu(); // Obtener el mensaje de menu
             }
         }
     }

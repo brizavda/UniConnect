@@ -10,6 +10,9 @@ public class IU_Autenticacion { // Definición de la clase IU_Autenticacion
     public void getInitMessage(int opcion) { // Método para obtener el mensaje de inicialización
         controladorAutenticacion.sendOptionMessage(opcion); // Enviar la opción al controlador de autenticación
     }
+    public void getMenuMessage(int opcion) {
+        controladorAutenticacion.sendOptionMenu(opcion);
+    }
 
     public void inicioSesion() { // Método para iniciar sesión
         System.out.println("╔══════════════════════════╗"); // Imprimir el encabezado de inicio de sesión

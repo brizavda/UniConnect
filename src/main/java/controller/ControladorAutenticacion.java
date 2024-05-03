@@ -12,6 +12,10 @@ public class ControladorAutenticacion { // Definición de la clase ControladorAu
         gestorAutenticacion.getOption(opcion); // Enviar la opción al gestor de autenticación
     }
 
+    public void sendOptionMenu(int opcion) {
+        gestorAutenticacion.getViews(opcion);
+    }
+
     public void getLogIn() { // Método para obtener el inicio de sesión
         IU_Autenticacion autenticacion = new IU_Autenticacion(); // Crear una instancia de IU_Autenticacion
         autenticacion.inicioSesion(); // Iniciar sesión

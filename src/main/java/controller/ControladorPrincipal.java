@@ -16,7 +16,7 @@ public class ControladorPrincipal { // Definición de la clase ControladorPrinci
     }
 
     public void sendMenuMessage(int opcion) { // Método para enviar un mensaje de menú
-        // Este método no está implementado en este momento
+        autenticacion.getMenuMessage(opcion);
     }
 }
 
