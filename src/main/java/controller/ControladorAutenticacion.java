@@ -1,15 +1,15 @@
 package controller;
+
 import model.Autenticacion.GestorAutenticacion;
 import model.Perfil.TablaUsuarios;
 import view.IU_Autenticacion;
 import view.IU_Principal;
 
 public class ControladorAutenticacion {
-    private TablaUsuarios tablaUsuarios;
-    GestorAutenticacion gestorAutenticacion = new GestorAutenticacion(tablaUsuarios);
+    GestorAutenticacion gestorAutenticacion = new GestorAutenticacion();
     public void sendOptionMessage(int opcion) {
         //System.out.println(opcion);
-        gestorAutenticacion.getMessage(opcion);
+        gestorAutenticacion.getOption(opcion);
     }
     public void getLogIn(){
         IU_Autenticacion autenticacion = new IU_Autenticacion();
@@ -20,12 +20,25 @@ public class ControladorAutenticacion {
         autenticacion.registrarse();
     }
 
-    public void sendLoginData(String correo, String contraseña) {
-        gestorAutenticacion.logIn(correo,contraseña);
+    public void sendLoginData(String correo, String contrasena) {
+        boolean correcto = gestorAutenticacion.logIn(correo,contrasena);
+
+        if (correcto==true){
+            getMenu();
+        }else {
+            getInit();
+        }
     }
 
-    public void sendNewData(String correo, String contraseña, String nombre, String fechaNacimiento) {
-        gestorAutenticacion.newUser(correo,contraseña,nombre,fechaNacimiento);
+    public void sendNewData(String correo, String contrasena, String nombre, String fechaNacimiento) {
+        boolean correcto = gestorAutenticacion.newUser(correo,contrasena,nombre,fechaNacimiento);
+
+        if (correcto==true){
+            getLogIn();
+        }else {
+            System.out.println("Registro sin exito. Intenta de nuevo");
+            getInit();
+        }
     }
 
     public void getMenu() {
@@ -37,3 +50,4 @@ public class ControladorAutenticacion {
         principal.inicializar();
     }
 }
+

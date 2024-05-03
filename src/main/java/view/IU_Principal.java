@@ -1,6 +1,7 @@
 package view;
 
 import controller.ControladorPrincipal;
+
 import java.util.Scanner;
 
 public class IU_Principal {
@@ -31,5 +32,6 @@ public class IU_Principal {
         System.out.println("8. Tutorías");
         System.out.println("9. Cerrar sesión");
         int opcion = scanner.nextInt();
+        controladorPrincipal.sendMenuMessage(opcion);
     }
 }
