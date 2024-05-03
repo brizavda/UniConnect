@@ -1,1 +1,62 @@
+package model.Mensajeria;
+ import java.io.Serializable;
+import java.util.ArrayList;
+
+public class TablaMensajeria implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private ArrayList<Mensaje> mensajes;
+
+    public TablaMensajeria() {
+        mensajes = new ArrayList<>();
+    }
+
+    public void agregarMensaje(Mensaje mensaje) {
+        mensajes.add(mensaje);
+    }
+
+    public ArrayList<Mensaje> getMensajes() {
+        return mensajes;
+    }
+
+    public Mensaje buscarMensajePorId(int id) {
+        for (Mensaje mensaje : mensajes) {
+            if (mensaje.getId() == id) {
+                System.out.println("Mensaje con ID " + id + " encontrado.");
+                return mensaje;
+            }
+        }
+        System.out.println("No se encontró ningún mensaje con ID " + id + ".");
+        return null;
+    }
+
+    public ArrayList<Mensaje> buscarMensajesPorRemitente(int idRemitente) {
+        ArrayList<Mensaje> mensajesRemitente = new ArrayList<>();
+        for (Mensaje mensaje : mensajes) {
+            if (mensaje.getIdRemitente() == idRemitente) {
+                mensajesRemitente.add(mensaje);
+            }
+        }
+        if (mensajesRemitente.isEmpty()) {
+            System.out.println("No se encontraron mensajes enviados por el remitente con ID " + idRemitente + ".");
+        } else {
+            System.out.println("Mensajes enviados por el remitente con ID " + idRemitente + " encontrados.");
+        }
+        return mensajesRemitente;
+    }
+
+    public ArrayList<Mensaje> buscarMensajesPorDestinatario(int idDestinatario) {
+        ArrayList<Mensaje> mensajesDestinatario = new ArrayList<>();
+        for (Mensaje mensaje : mensajes) {
+            if (mensaje.getIdDestinatario() == idDestinatario) {
+                mensajesDestinatario.add(mensaje);
+            }
+        }
+        if (mensajesDestinatario.isEmpty()) {
+            System.out.println("No se encontraron mensajes para el destinatario con ID " + idDestinatario + ".");
+        } else {
+            System.out.println("Mensajes para el destinatario con ID " + idDestinatario + " encontrados.");
+        }
+        return mensajesDestinatario;
+    }
+}
 
