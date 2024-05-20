@@ -1,31 +1,41 @@
 package controller;
+
 import model.Perfil.Usuario;
 import model.Publicaciones.Publicacion;
 import java.util.List;
 import model.Busqueda.GestorBusqueda;
 
 public class ControladorBusqueda {
-    private GestorBusqueda gestorBusqueda;
+   // Instancia del GestorBusqueda encargado de realizar las búsquedas
+   private GestorBusqueda gestorBusqueda;
 
-    public ControladorBusqueda(GestorBusqueda gestorBusqueda) {
-        this.gestorBusqueda = gestorBusqueda;
-    }
+   // Constructor que recibe una instancia de GestorBusqueda
+   public ControladorBusqueda(GestorBusqueda gestorBusqueda) {
+       this.gestorBusqueda = gestorBusqueda;
+   }
 
-    public List<Usuario> buscarUsuarioPorId(int idUsuario) {
-        return gestorBusqueda.buscarUsuario(idUsuario, null);
-    }
+   // Método que busca usuarios por su ID
+   public List<Usuario> buscarUsuarioPorId(int idUsuario) {
+       // Delega la búsqueda al GestorBusqueda, pasando el ID y un criterio nulo
+       return gestorBusqueda.buscarUsuario(idUsuario, null);
+   }
+ // Método que busca usuarios por su correo electrónico
+   public List<Usuario> buscarUsuarioPorCorreo(String correo) {
+       // Delega la búsqueda al GestorBusqueda, pasando un ID cero y el correo como criterio
+       return gestorBusqueda.buscarUsuario(0, correo);
+   }
 
-    public List<Usuario> buscarUsuarioPorCorreo(String correo) {
-        return gestorBusqueda.buscarUsuario(0, correo);
-    }
+   // Método que busca publicaciones por su contenido y el ID del autor
+   public List<Publicacion> buscarPublicaciones(String contenido, int idAutor) {
+       // Busca el autor por su ID
+       Usuario autor = gestorBusqueda.buscarUsuarioPorId(idAutor);
 
-    public List<Publicacion> buscarPublicaciones(String contenido, int idAutor) {
-        Usuario autor = gestorBusqueda.buscarUsuarioPorId(idAutor);
-        if (autor == null) {
-            return null;
-        }
-        return gestorBusqueda.buscarPublicaciones(contenido, autor);
-    }
+       // Si el autor no existe, retorna null
+       if (autor == null) {
+           return null;
+       }
 
-    
+       // Delega la búsqueda de publicaciones al GestorBusqueda, pasando el contenido y el autor
+       return gestorBusqueda.buscarPublicaciones(contenido, autor);
+   }
 }
