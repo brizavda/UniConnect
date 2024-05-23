@@ -1,1 +1,3 @@
-UniConnect es una red social dirigida a estudiantes de la UAM Cuajimalpa
+INSTRUCCIONES
+Para ejecutar el programa se debe hacer lo siguiente.
+1. 
